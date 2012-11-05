@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="alternate" type="application/rss+xml" title="Text-Feed" href="/rss.xml">
+    <meta charset="utf-8">
+    <title>Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/docs.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+  </head>
+  <body>
+	<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Example</a>
+          <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" {{if .IsLoggedIn}}data-toggle="dropdown"{{end}} href="{{if .IsLoggedIn}}#{{else}}/login{{end}}">
+              <i class="icon-user"></i> {{if .IsLoggedIn}}{{.Username}}{{else}}Login{{end}}
+              {{if .IsLoggedIn}}<span class="caret"></span>{{end}}
+            </a>
+            {{if .IsLoggedIn}}<ul class="dropdown-menu">
+	      <li><a href="/logout">Sign Out</a></li>
+            </ul>{{end}}
+          </div>
+          <div class="nav-collapse">
+            <form class="navbar-search pull-left" action="/search" method="GET">
+            <input type="text" name="q" class="search-query span2" placeholder="Search...">
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+	<div class="container-fluid">
+   <div class="row-fluid">
+		<div class="span3">
+			<div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Navigation</li>
+              <li><a href="/"><i class="icon-home"></i> Home</a></li>
+              {{if .IsAdmin}}
+              <li class="nav-header">Admin</li>
+              <li><a href="/admin/blog/"><i class="icon-pencil icon"></i> Manage blog posts</a></li>
+              <li class="divider"></li>
+              <li><a href="/admin/pages/"><i class="icon-file icon"></i> Manage pages</a></li>
+              <li class="divider"></li>
+              <li><a href="/admin/files/"><i class="icon-file icon"></i> Manage files</a></li>
+              <li class="divider"></li>
+	      {{end}}
+            </ul>
+          </div>
+		</div>
+		<div class="span9">
+      <div class="row-fluid">
